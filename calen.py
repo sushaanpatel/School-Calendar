@@ -161,6 +161,25 @@ def subject(sub, start, end):
                 ],
             },
         }
+    elif sub == 'ps':
+        return {
+            'summary': 'PS/Club',
+            'location': 'Frisbee Ground/Room number - 126',
+            'start': {
+                'dateTime': start,
+                'timeZone': 'GMT+05:30',
+            },
+            'end': {
+                'dateTime': end,
+                'timeZone': 'GMT+05:30',
+            },
+            'reminders': {
+                'useDefault': False,
+                'overrides': [
+                    {'method': 'popup', 'minutes': 10},
+                ],
+            },
+        }
 
 # start maa - datetime.datetime(2022, 6, 22, 14, 50, 0).isoformat()
 # end maa - datetime.datetime(2022, 6, 22, 15, 35, 0).isoformat()
@@ -172,8 +191,9 @@ def main():
     
     #date variables
     start_date = datetime.datetime(
-    2022, 6, 9, 00, 00, 00, 0).isoformat() + 'Z'
+    2022, 7, 28, 00, 00, 00, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2023, 6, 1, 23, 59, 59).isoformat() + 'Z'
+    calendarid = "c_ovmfnt900o1dnb72tu169j3m9k@group.calendar.google.com"
     
     #all events in 2022 to 2023
     calendar = service.events().list(
@@ -186,40 +206,136 @@ def main():
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                # LL
+                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 55, 0).isoformat())).execute()
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                #BM
+                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 0, 0).isoformat())).execute()
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('tok', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
+                #Phy
+                service.events().insert(calendarId=calendarid, body=subject('phy', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
+                
+                #MAA
+                service.events().insert(calendarId=calendarid, body=subject('maa', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('tok', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
             elif i['summary'] == 'D2':
                 temp = i['start']['date']
                 date = temp.split('-')
+                #MAA
+                service.events().insert(calendarId=calendarid, body=subject('maa', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 55, 0).isoformat())).execute()
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                service.events().insert(calendarId=calendarid, body=subject('ps', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]),11, 0, 0).isoformat())).execute()
+                
+                #Phy
+                service.events().insert(calendarId=calendarid, body=subject('phy', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                
+                #LL
+                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
+                
+                #LL
+                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
+                
+                #French
+                service.events().insert(calendarId=calendarid, body=subject('fre', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
             elif i['summary'] == 'D3':
                 temp = i['start']['date']
                 date = temp.split('-')
-                pass
+                
+                service.events().insert(calendarId=calendarid, body=subject('ps', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]),9, 55, 0).isoformat())).execute()
+                
+                #BM
+                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 0, 0).isoformat())).execute()
+                
+                #BM
+                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                
+                #phy
+                service.events().insert(calendarId=calendarid, body=subject('phy', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                
+                #fre
+                service.events().insert(calendarId=calendarid, body=subject('fre', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
+                
+                #CS
+                service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
+                
+                #MAA
+                service.events().insert(calendarId=calendarid, body=subject('maa', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
                 
             elif i['summary'] == 'D4':
                 temp = i['start']['date']
                 date = temp.split('-')
-                pass
+                
+                #BM
+                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 55, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('ps', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]),11, 0, 0).isoformat())).execute()
+                
+                #CS
+                service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                
+                #MAA
+                service.events().insert(calendarId=calendarid, body=subject('maa', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                
+                #French
+                service.events().insert(calendarId=calendarid, body=subject('fre', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
+                
+                #Phy
+                service.events().insert(calendarId=calendarid, body=subject('phy', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
+                
+                #Phy
+                service.events().insert(calendarId=calendarid, body=subject('phy', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 35, 0).isoformat())).execute()
                              
             elif i['summary'] == 'D5':
                 temp = i['start']['date']
                 date = temp.split('-')
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('tok', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
+                # LL
+                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 55, 0).isoformat())).execute()
+                
+                #CS
+                service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 00, 0).isoformat())).execute()
+                
+                #CS
+                service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                
+                #BM
+                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                
+                #French
+                service.events().insert(calendarId=calendarid, body=subject('fre', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('tok', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
                
             elif i['summary'] == 'D6':
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
+                service.events().insert(calendarId=calendarid, body=subject('ps', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]),9, 55, 0).isoformat())).execute()
                 
-                service.events().insert(calendarId='c_2ab4o4t80e5f6iio3l8d68rt08@group.calendar.google.com', body=subject('tok', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
+                #MAA
+                service.events().insert(calendarId=calendarid, body=subject('maa', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 0, 0).isoformat())).execute()
+                
+                #MAA
+                service.events().insert(calendarId=calendarid, body=subject('maa', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
+                
+                #LL
+                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                
+                #CS
+                service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 13, 55, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('free', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 50, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 15, 35, 0).isoformat())).execute()
+                
+                service.events().insert(calendarId=calendarid, body=subject('tok', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
         except Exception as e:
             print(e)
     
