@@ -191,9 +191,9 @@ def main():
     
     #date variables
     start_date = datetime.datetime(
-    2022, 7, 28, 00, 00, 00, 0).isoformat() + 'Z'
+    2022, 9, 4, 00, 00, 00, 0).isoformat() + 'Z'
     end_date = datetime.datetime(2023, 6, 1, 23, 59, 59).isoformat() + 'Z'
-    calendarid = "c_ovmfnt900o1dnb72tu169j3m9k@group.calendar.google.com"
+    calendarid = "c_sb0am0avhl5pstf3ilk30s0630@group.calendar.google.com"
     
     #all events in 2022 to 2023
     calendar = service.events().list(
@@ -297,7 +297,7 @@ def main():
                 date = temp.split('-')
                 
                 # LL
-                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 55, 0).isoformat())).execute()
+                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 10, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 9, 55, 0).isoformat())).execute()
                 
                 #CS
                 service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 10, 15, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 00, 0).isoformat())).execute()
@@ -306,7 +306,7 @@ def main():
                 service.events().insert(calendarId=calendarid, body=subject('cs', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 5, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 50, 0).isoformat())).execute()
                 
                 #BM
-                service.events().insert(calendarId=calendarid, body=subject('bm', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
+                service.events().insert(calendarId=calendarid, body=subject('ll', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 11, 55, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 12, 40, 0).isoformat())).execute()
                 
                 #French
                 service.events().insert(calendarId=calendarid, body=subject('fre', datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 0, 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), 14, 45, 0).isoformat())).execute()
