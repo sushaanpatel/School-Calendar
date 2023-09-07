@@ -11,17 +11,18 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 # start maa - datetime.datetime(2022, 6, 22, 14, 50, 0).isoformat()
 # end maa - datetime.datetime(2022, 6, 22, 15, 35, 0).isoformat()
-calendarid = "c_sb0am0avhl5pstf3ilk30s0630@group.calendar.google.com"
+calendarid = "c_ed6cdabd14779b1f159f50c6de24fbcacf53d0c46bd9bc834d44d9dbc3ff1660@group.calendar.google.com"
 
 def event(sub, date, slotnum):
     creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     service = build('calendar', 'v3', credentials=creds)
     slottime = {
-        1:[9, 20, 10, 40],
-        2:[11, 5, 11, 50],
-        3:[12, 0, 13, 0],
-        4:[13, 30, 14, 30],
-        5:[14, 40, 15, 35]
+        1:[9, 10, 10, 00],
+        2:[10, 20, 11, 10],
+        3:[11, 20, 12, 10],
+        4:[12, 20, 13, 10],
+        5:[13, 45, 14, 35],
+        6:[14, 45, 15, 35]
     }
     service.events().insert(calendarId=calendarid, body=subject(sub, datetime.datetime(int(date[0]), int(date[1]), int(date[2]), slottime[slotnum][0], slottime[slotnum][1], 0).isoformat(), datetime.datetime(int(date[0]), int(date[1]), int(date[2]), slottime[slotnum][2], slottime[slotnum][3], 0).isoformat())).execute()
 
@@ -33,8 +34,8 @@ def main():
     
     #date variables
     start_date = datetime.datetime(
-    2022, 11, 7, 00, 00, 00, 0).isoformat() + 'Z'
-    end_date = datetime.datetime(2023, 6, 1, 23, 59, 59).isoformat() + 'Z'
+    2023, 6, 26, 00, 00, 00, 0).isoformat() + 'Z'
+    end_date = datetime.datetime(2024, 5, 30, 23, 59, 59).isoformat() + 'Z'
     
     #all events in 2022 to 2023
     calendar = service.events().list(
@@ -47,57 +48,69 @@ def main():
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                event('fre', date, 1)
-                event('ps', date, 2)
-                event('tok', date, 3)
-                event('cs', date, 4)
-                event('phy', date, 5)
+                event('tok', date, 1)
+                event('fre', date, 2)
+                event('fre', date, 3)
+                event('ps', date, 4)
+                event('free', date, 5)
+                event('bm', date, 6)
                 
             elif i['summary'] == 'D2':
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                event('free', date, 1)
-                event('bm', date, 2)
-                event('maa', date, 3)
-                event('ll', date, 4)
-                event('cas', date, 5)
+                event('phy', date, 1)
+                event('ps', date, 2)
+                event('cs', date, 3)
+                event('cs', date, 4)
+                event('ll', date, 5)
+                event('maa', date, 6)
+                
+                
             elif i['summary'] == 'D3':
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                event('cs', date, 1)
-                event('bm', date, 2)
+                event('ps', date, 1)
+                event('cs', date, 2)
                 event('tok', date, 3)
-                event('free', date, 4)
-                event('maa', date, 5)
+                event('maa', date, 4)
+                event('bm', date, 5)
+                event('bm', date, 6)
+                
             elif i['summary'] == 'D4':
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                event('phy', date, 1)
-                event('ps', date, 2)
-                event('free', date, 3)
-                event('cs', date, 4)
-                event('fre', date, 5)             
+                event('fre', date, 1)
+                event('bm', date, 2)
+                event('phy', date, 3)
+                event('phy', date, 4)
+                event('ll', date, 5)      
+                event('free', date, 6)
+                       
             elif i['summary'] == 'D5':
                 temp = i['start']['date']
                 date = temp.split('-')
                 
-                event('ll', date, 1)
-                event('bm', date, 2)
-                event('phy', date, 3)
-                event('maa', date, 4)
-                event('free', date, 5)
+                event('phy', date, 1)
+                event('ll', date, 2)
+                event('maa', date, 3)
+                event('free', date, 4)
+                event('cs', date, 5)
+                event('cas', date, 6)
+                
             elif i['summary'] == 'D6':
                 temp = i['start']['date']
                 date = temp.split('-')
                 
                 event('ps', date, 1)
-                event('tok', date, 2)
-                event('ll', date, 3)
-                event('fre', date, 4)
-                event('maa', date, 5)
+                event('fre', date, 2)
+                event('maa', date, 3)
+                event('ll', date, 4)
+                event('free', date, 5)
+                event('free', date, 6)
+                
         except Exception as e:
             print(e)
     
@@ -118,6 +131,7 @@ def auth():
                 creds = flow.run_local_server(port=0)
             with open('token.json', 'w') as token:
                 token.write(creds.to_json())
+        auth()
             
 auth()
 
